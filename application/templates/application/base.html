@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PharmaFriend</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
+  {% load static %}<link rel="stylesheet" href="{% static 'application/CSS/bootstrap.min.css' %}">
+  {% load static %}<link rel="stylesheet" href="{% static 'application/CSS/magnific-popup.css' %}">
+  {% load static %}<link rel="stylesheet" href="{% static 'application/CSS/jquery-ui.css' %}">
+  {% load static %}<link rel="stylesheet" href="{% static 'application/CSS/owl.carousel.min.css' %}">
+  {% load static %}<link rel="stylesheet" href="{% static 'application/CSS/owl.theme.default.min.css' %}">
+  {% load static %}<link rel="stylesheet" href="{% static 'application/CSS/aos.css' %}">
+  {% load static %}<link rel="stylesheet" href="{% static 'application/CSS/style.css' %}">
+  {% load static %}<link rel="stylesheet" href="{% static 'consultvideo/css/style.css' %}">
+  <!--Font Awesome -->
+  <script src="https://kit.fontawesome.com/89baad1ea2.js" crossorigin="anonymous"></script>
+</head> 
+
+<body>
+    <div class="site-navbar py-2">
+        <div class="container">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="logo">
+            <div class="site-logo">
+                <a href="{% url 'pharmafriend:homepage' %}" class="js-logo-clone">Pharma Friend</a>
+            </div>
+            </div>
+            <div class="main-nav d-none d-lg-block">
+            <nav class="site-navigation text-right text-md-center" role="navigation">
+                <ul class="site-menu js-clone-nav d-none d-lg-block">
+                    <!-- Home -->
+                    {% if 'http://127.0.0.1:8000/' in request.path %}
+                    <li class="active"><a href="{% url 'pharmafriend:homepage' %}">Home</a></li>
+                    {% else %}
+                        <li><a href="{% url 'pharmafriend:homepage' %}">Home</a></li>
+                    {% endif %}
+                    
+                    <!-- Store -->
+                    {% if 'Store' in request.path %}
+                        <li class="active"><a href="{% url 'pharmastore:homepage' %}">Store</a></li>
+                    {% else %}
+                        <li><a href="{% url 'pharmastore:homepage' %}">Store</a></li>
+                    {% endif %}
+
+                    <!-- Consult Page -->
+                    {% if 'Consult' in request.path %}
+                        <li class="active"><a href="{% url 'Consult:create_room' %}">Consult</a></li>
+                    {% else %}
+                        <li><a href="{% url 'Consult:create_room' %}">Consult</a></li>
+                    {% endif %}
+
+                    <!-- Search Medicine -->
+                    {% if 'Search' in request.path %}
+                        <li class="active"><a href="{% url 'pharmafriend:searchpage' %}">Search Medicines</a></li>
+                    {% else %}
+                        <li><a href="{% url 'pharmafriend:searchpage' %}">Search Medicines</a></li>
+                    {% endif %}
+                        
+                    <!-- Government Medicines -->
+                    {% if 'GovMeds' in request.path %}
+                        <li class="active"><a href="{% url 'pharmafriend:govmeds' %}">Government Vendors</a></li>
+                    {% else %}
+                        <li><a href="{% url 'pharmafriend:govmeds' %}">Government Vendors</a></li>
+                    {% endif %}
+
+                    <!-- Locate Page -->
+                    <!-- {% if 'Locate' in request.path %}
+                        <li class="active"><a href="{% url 'pharmafriend:locatepage' %}">Locate Pharmacy</a></li>
+                    {% else %}
+                        <li><a href="{% url 'pharmafriend:locatepage' %}">Locate Pharmacy</a></li>
+                    {% endif %} -->
+
+
+                    <!-- About Page -->
+                    {% if 'About' in request.path %}
+                        <li class="active"><a href="{% url 'pharmafriend:aboutpage' %}">About</a></li>
+                    {% else %}
+                        <li><a href="{% url 'pharmafriend:aboutpage' %}">About</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            </div>
+            <div>      
+                {% if user.id is None %}   
+                    <div class="widget-header">
+                        <small class="title text-muted">Welcome guest!</small>
+                        <div>
+                            <a href="{% url 'accounts:loginuser' %}">Sign in</a> <span class="dark-transp"> | </span>
+                            <a href="{% url 'accounts:registeruser' %}"> Register</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="widget-header">
+                        <small class="title text-muted">Welcome {{user.first_name}}</small>
+                        <div> 
+                            <a href="{% url 'accounts:logoutuser' %}">Logout</a> <span class="dark-transp"> | </span>
+                            <a href="{% url 'accounts:dashboarduser' %}"> Dashboard</a>
+                        </div>
+                    </div>
+                {% endif %}
+              </div>
+        </div>
+    </div>
+
+    {% block content %}
+        <!-- content -->
+    {% endblock content %}
+
+    <footer class="site-footer">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+            <div class="block-7">
+                <h3 class="footer-heading mb-4">About Us</h3>
+                <p>We are with a mission of providing medicines to the customer at an affordable rate by price comparison and increasing awareness on Medicine prices and relevant information</p>
+            </div>  
+            </div>
+            <div class="col-lg-3 mx-auto mb-5 mb-lg-0">
+            <h3 class="footer-heading mb-4">Quick Links</h3>
+            <ul class="list-unstyled">
+            <li><a href="{% url 'pharmafriend:homepage' %}">Home</a></li>
+            <li><a href="{% url 'pharmafriend:searchpage' %}">Search Medicines</a></li>
+            <li><a href="{% url 'pharmafriend:govmeds' %}">Government Vendors</a></li>
+            <li><a href="{% url 'pharmafriend:locatepage' %}">Locate Pharmacy</a></li>
+            <li><a href="{% url 'pharmafriend:pharmacy' %}">Pharmacy Zone</a></li>
+            <!-- <li><a href="{% url 'pharmafriend:aboutpage' %}">About</a></li>
+            <li><a href="{% url 'pharmafriend:contactpage' %}">Contact</a></li> -->
+            </ul>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+            <div class="block-5 mb-5">
+                <h3 class="footer-heading mb-4">Contact Info</h3>
+                <ul class="list-unstyled">
+                <li class="address">KJSIT Sion, Mumbai, Maharashtra, India</li>
+                <li class="phone"><a>+91 77385 74300</a></li>
+                <li class="email"><a href="#" onclick="sendEmail('gammabytessup@gmail.com', 'Communication with GammaBytes', 'BODY');">gammabytessup@gmail.com</a></li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+            <div class="col-md-12">
+            <p>
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | Website made by Gammabyte Pvt Ltd.
+            
+            </p>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        function sendEmail(to, subject, body) {
+            window.open('https://mail.google.com/mail/u/0/?view=cm&fs=1&to=' + to + '&su=' + subject + '&body=' + body);
+        }
+    </script>
+
+    

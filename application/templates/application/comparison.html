@@ -1,0 +1,195 @@
+{% extends 'application/base.html' %}
+{% load static %}
+
+{% block content %} 
+  <div class="site-wrap" style="margin: 0 15px;border: 5px solid rgba(84,223,223,255);">
+    <div class="page">
+      <div id="preloader" class="blobs-wrapper">
+          <div class="grp-bgcolor-skincolor loader-blob"></div>
+      </div>
+      <div class="bg-light py-3">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5 mb-0">
+              <a href="{% url 'pharmafriend:homepage' %}" style="text-decoration: none;">Home</a><span class="mx-2 mb-0">/</span>
+              <a style="text-decoration: none;">Search</a><span class="mx-2 mb-0">/</span>
+              <a style="text-decoration: none;">Medicines</a><span class="mx-2 mb-0">/</span>
+              <a style="text-decoration: none;">{{request.session.medicineinfo.medname}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 mr-auto" style="display: flex;justify-content: center;align-items: center;">
+              <div class="border text-center">
+                <!-- medicine image  -->
+                {% load static %}<img src={{request.session.medicineinfo.medimg}} alt="{% static 'application/images/medicine.jpg' %}" class="img-fluid p-5" name="medicine-image"> 
+                <img src="" alt="">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h2 class="text-black" name="medicine-name">{{request.session.medicineinfo.medname}}</h2><br>
+              <h3 style="color: rgb(27, 27, 28);">Product Info</h3>
+              <p name="product-info" style="color: rgb(36, 36, 36);">{{request.session.medicineinfo.medinfo}}</p>
+              <p>MRP <strong  class="text-primary h4" name="price"><b style="color: red;">{{request.session.medicineinfo.medpricemrp}}</b></strong></p>
+              <div class="mt-5">
+                <div class="tab-content" id="pills-tabContent">
+                  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <form method="POST" style="text-align: center;">
+                      {% csrf_token %}
+                      <table class="table custom-table">
+                        <thead>
+                          <th>Product</th>
+                          <th>Website</th>
+                          <th>Medicine</th>
+                          <th>Price</th>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row" style="vertical-align: middle;" rowspan="4" name="product-name">{{request.session.medicineinfo.medname}}</th>
+                            <td><a href="{{request.session.medicineinfo.medlink}}">1MG</a></td>
+                            <td>{{request.session.medicineinfo.medname}}</td>
+                            <td class="medicine_price_1mg" value="{{request.session.medicineinfo.medpricedis}}" name="price-1mg">{{request.session.medicineinfo.medpricedis}}</td>
+                          </tr>
+                          <tr>
+                            <td><a href="{{apollodet.Medlink}}">ApolloPharmacy</a></td>
+                            <td>
+                              <select class="form-control" name="meddropdownapollo">
+                                <option selected="selected" disabled>Select Medicine:</option>
+                                {% for medicines in request.session.compareapolloops %}
+                                <option class="form-control" value="{{medicines}}">{{medicines}}</option>
+                                {% endfor %}
+                                <option class="form-control" value="Unavailable">Not Available</option>
+                              </select>
+                            </td>
+                            <td class="medicine_price_apollo" value="{{apollodet.Meddis}}" name="price-pharmaeasy">{{apollodet.Meddis}}</td>
+                          </tr>
+                          <tr>
+                            <td><a href="{{pharmdet.Medlink}}">PharmEasy</a></td>
+                            <td>
+                              <select class="form-control" name="meddropdownpharm">
+                                <option selected="selected" disabled>Select Medicine:</option>
+                                {% for medicines in request.session.comparepharmops %}
+                                <option class="form-control" value="{{medicines}}">{{medicines}}</option>
+                                {% endfor %}
+                                <option class="form-control" value="Unavailable">Not Available</option>
+                              </select>
+                            </td>
+                            <td class="medicine_price_pharmeasy" value="{{pharmdet.Meddis}}" name="price-pharmaeasy">{{pharmdet.Meddis}}</td>
+                          </tr>
+                          <tr>
+                            <td><a href="{{netmedsdet.Medlink}}">NetMeds</a></td>
+                            <td>
+                              <select class="form-control" name="meddropdownnetmeds">
+                                <option selected="selected" disabled>Select Medicine:</option>
+                                {% for medicines in request.session.comparenetmedsops %}
+                                <option class="form-control" value="{{medicines}}">{{medicines}}</option>
+                                {% endfor %}
+                                <option class="form-control" value="Unavailable">Not Available</option>
+                              </select>
+                            </td>
+                            <td class="medicine_price_netmeds" value="{{netmedsdet.Meddis}}" name="price-pharmaeasy">{{netmedsdet.Meddis}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <input value="Submit" class="btn btn-info" type="submit">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+              <div style="margin: 1.5em 0px;">
+                  <h3 class="text-black">Benefits</h3>
+                  {% for benefit in request.session.medicineinfo.meduses %}
+                    <ul name="">
+                      <li>
+                        <h4 style="color: rgb(27, 27, 28);margin-top: 15px;">{{benefit.meduseshead}}</h4>
+                        <p style="color: rgb(46, 46, 46);">{{benefit.medusestext}}</p>
+                      </li>
+                    </ul>
+                  {% endfor %}
+                  <h5></h5>
+              </div>
+
+              <div style="margin: 1.5em 0px;">
+                <h3 class="text-black">Side Effects</h3>
+                <p style="color: rgb(46, 46, 46);">{{request.session.medicineinfo.medeffectspara}}</p>
+                <ul name="">
+                  {% for effect in request.session.medicineinfo.medeffectslist %}
+                    <li style="color: rgb(27, 26, 26);">{{effect}}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+
+              <div style="margin: 1.5em 0px;">
+                  <h3 class="text-black">How it Works</h3>
+                  <p name="how-it-works" style="color: rgb(46, 46, 46);">{{request.session.medicineinfo.medmech}}</p>
+              </div>
+
+              <div style="margin: 1.5em 0px;">
+                  <h3 class="text-black">Safety Advice</h3>
+                  <p name="how-it-works">
+                      <!-- list safety Advice for medicines -->
+                      <ul name="">
+                        {% for safety in request.session.medicineinfo.medsafety %}
+                        <li style="color: rgb(46, 46, 46);">{{safety}}</li>
+                        {% endfor %}
+                      </ul>
+                  </p>
+              </div>
+
+          </div>
+          <div class="row">
+            <div style="width: 100%;">
+                <h3 class="text-black">Alternate Brands for Medication</h3>
+                <p style="color: rgb(212, 0, 0);">For informational purposes only. Consult a doctor before taking any medicines.</p><br>
+                <table class="table custom-table">
+                    <!-- ALternative Medicines List -->
+                    <thead>
+                      <th>Medicine</th>
+                      <th>Manufacturer</th>
+                      <th>Price</th>
+                      <th>Savings</th>
+                      <th>Tablets</th>
+                    </thead>
+                    <tbody>
+                      {% for altmeds in request.session.medicineinfo.medalt %}
+                      <tr>
+                        <td><a href={{altmeds.medlink}} style="color: rgb(12, 12, 63);text-decoration:dashed;">{{altmeds.medname}}</a></td>
+                        <td name="pharma-1mg">{{altmeds.medmanuf}}</td>
+                        <td>{{altmeds.medprice}}</td>
+                        <td>{{altmeds.medsave}}</td>
+                        <td>{{altmeds.medtablets}}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>
+              <div style="margin: 2em;">
+                <a href="{% url 'Consult:create_room' %}" class="btn btn-primary px-5 py-3">Consult Doctor</a></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="site-section bg-secondary bg-image" style="background-image: url('images/bg_2.jpg');">
+      </div>
+    </div>
+  </div>
+  {% load static %}<script src="{% static 'application\JS\jquery-3.3.1.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\jquery-ui.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\popper.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\bootstrap.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\owl.carousel.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\jquery.magnific-popup.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\aos.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\main.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\script.js' %}"></script>
+</body>
+</html>
+{% endblock content %}

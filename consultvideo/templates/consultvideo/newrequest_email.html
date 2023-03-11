@@ -1,0 +1,8 @@
+{% autoescape off %}
+
+Hii, {{admin_user.first_name}} {{admin_user.last_name}}
+
+Please click on below link to create a Consultation Room for user {{current_user.first_name}} {{current_user.last_name}}
+{{site_url}}
+
+{% endautoescape %}

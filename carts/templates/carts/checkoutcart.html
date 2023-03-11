@@ -1,0 +1,133 @@
+{% extends 'pharmastore/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<section class="section-content padding-y bg">
+    <div class="container">
+
+        <!-- ============================ COMPONENT 1 ================================= -->
+        <div class="row">
+        	<aside class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4" style="color:black;">Billing Address</h4>
+                        <form action="{% url 'orders:placeorderpage' %}" style="color: black;" method="POST">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="first_name">First Name</label>
+                                    <input type="text" name="first_name" placeholder="Enter First Name" id="first_name" class="form-control" value="{{request.session.userprofile.user_first_name}}" required >
+                                </div>
+                                <div class="col form-group">
+                                    <label for="last_name">Last Name</label>
+                                    <input type="text" name="last_name" placeholder="Enter Last Name" id="last_name" class="form-control" value="{{request.session.userprofile.user_last_name}}" required >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" name="email" placeholder="Enter Email Address" id="email" class="form-control" value="{{request.session.userprofile.user_email}}" required >
+                                </div>
+                                <div class="col form-group">
+                                    <label for="phoneno">Phone Number</label>
+                                    <input type="text" placeholder="Enter Contact Number" name="phoneno" id="phoneno" class="form-control" value="{{request.session.userprofile.user_phone_no}}" required >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="address_line_1">Address Line 1</label>
+                                    <input type="text" placeholder="Enter Residential Address-I" name="address_line_1" id="addr1" class="form-control" value="{{request.session.userprofile.address_line1}}" required >
+                                </div>
+                                <div class="col form-group">
+                                    <label for="address_line_2">Address Line 2</label>
+                                    <input type="text" placeholder="Enter Residential Address-II" name="address_line_2" id="addr2" class="form-control" value="{{request.session.userprofile.address_line2}}" required >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="city">City</label>
+                                    <input type="text" class="form-control" name="city" id="city" placeholder="Enter City" value="{{request.session.userprofile.city}}">
+                                </div>
+                                <div class="col form-group">
+                                    <label for="state">State</label>
+                                    <input type="text" class="form-control" name="state" id="state" placeholder="Enter State" value="{{request.session.userprofile.state}}">
+                                </div>
+                                <div class="col form-group">
+                                    <label for="pin">Pin Code</label>
+                                    <input type="text" class="form-control" name="pin" id="pin" placeholder="Enter Pin Code" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="note">Order Note</label>
+                                    <textarea name="note" placeholder="Any Other Instructions or Notes" id="note" cols="3" rows="4" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <!-- Form ending near the checkout button -->
+                                </div>
+                            </div>
+                            </aside> <!-- col.// -->
+                        
+                            <aside class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                            <table class="table table-borderless table-shopping-cart">
+                            <thead class="text-muted">
+                                <tr class="small text-uppercase" style="text-align: center;">
+                                  <th scope="col">Product</th>
+                                  <th scope="col" width="120">Quantity</th>
+                                  <th scope="col" width="120">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cart_item in cart_items  %}	
+                                	<tr>
+                                		<td>
+                                			<figure class="itemside align-items-center">
+                                				<div class="aside"><img src="{{cart_item.product.images.url}}" class="img-sm"></div>
+                                				<figcaption class="info">
+                                					<a href="{{cart_item.product.get_url}}" class="title text-dark">{{cart_item.product.product_name}}</a>
+                                					<p class="text-muted small">
+                                                        {% if cart_item.variation.all %}
+                                                            {% for item in cart_item.variation.all %}
+                                                                {{ item.variation_category | capfirst }} : {{ item.variation_value | capfirst }} <br>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </p>
+                                				</figcaption>
+                                			</figure>
+                                		</td>
+                                		<td> 
+                                			<label for="">{{cart_item.quantity}}</label>
+                                		</td>
+                                		<td> 
+                                			<div class="price-wrap"> 
+                                				<var class="price">₹{{cart_item.sub_total}}</var> 
+                                				<small class="text-muted"> ₹{{cart_item.product.price}} each </small> 
+                                			</div> <!-- price-wrap .// -->
+                                		</td>
+                                	</tr>
+                                {% endfor %}
+                            </tbody>
+                            </table>        
+                                </div> <!-- card.// -->
+                            </div>
+                    	    <p class="text-center mb-3">
+                    	    	<img src="./images/misc/payments.png" height="26">
+                    	    </p>
+                            <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+                            <a href="{% url 'pharmastore:storepage' %}" class="btn btn-light btn-block">Continue Shopping</a>
+                        </form>
+                    </div> <!-- card-body.// -->
+                </div> <!-- card.// -->
+            </aside> <!-- col.// -->
+        </div> <!-- row.// -->
+        <!-- ============================ COMPONENT 1 END .// ================================= -->
+
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+</body>
+</html>
+{% endblock content %}

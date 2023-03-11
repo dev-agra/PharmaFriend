@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Pharma Friend</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
+  {% load static %}<link rel="stylesheet" href="{% static 'application/CSS/bootstrap.min.css' %}">
+  {% load static %}<link rel="stylesheet" href="{% static 'application/CSS/magnific-popup.css' %}">
+  {% load static %}<link rel="stylesheet" href="{% static 'application/CSS/jquery-ui.css' %}">
+  {% load static %}<link rel="stylesheet" href="{% static 'application/CSS/owl.carousel.min.css' %}">
+  {% load static %}<link rel="stylesheet" href="{% static 'application/CSS/owl.theme.default.min.css' %}">
+  {% load static %}<link rel="stylesheet" href="{% static 'application/CSS/aos.css' %}">
+  {% load static %}<link rel="stylesheet" href="{% static 'application/CSS/style.css' %}">
+  
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/89baad1ea2.js" crossorigin="anonymous"></script>
+</head> 
+
+<body>
+  <div class="site-navbar py-2">
+      <div class="container">
+      <div class="d-flex align-items-center justify-content-between">
+          <div class="logo">
+          <div class="site-logo">
+              <a href="{% url 'pharmafriend:homepage' %}" class="js-logo-clone">Pharma Friend</a>
+          </div>
+          </div>
+          <div class="main-nav d-none d-lg-block">
+            <nav class="site-navigation text-right text-md-center" role="navigation">
+                <ul class="site-menu js-clone-nav d-none d-lg-block">
+                <li><a href="{% url 'pharmafriend:homepage' %}">Home</a></li>
+                <li><a href="{% url 'pharmastore:homepage' %}">Store</a></li>
+                <li><a href="{% url 'Consult:create_room' %}">Consult</a></li>
+                <li><a href="{% url 'pharmafriend:searchpage' %}">Search Medicines</a></li>
+                <li class="active"><a href="{% url 'pharmafriend:govmeds' %}">Government Vendors</a></li>
+                <li><a href="{% url 'pharmafriend:aboutpage' %}">About</a></li>
+                </ul>
+            </nav>
+          </div>
+          <div>      
+            {% if user.id is None %}   
+                <div class="widget-header">
+                    <small class="title text-muted">Welcome guest!</small>
+                    <div>
+                        <a href="{% url 'accounts:loginuser' %}">Sign in</a> <span class="dark-transp"> | </span>
+                        <a href="{% url 'accounts:registeruser' %}"> Register</a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="widget-header">
+                    <small class="title text-muted">Welcome {{user.first_name}}</small>
+                    <div> 
+                        <a href="{% url 'accounts:logoutuser' %}">Logout</a> <span class="dark-transp"> | </span>
+                        <a href="{% url 'accounts:dashboarduser' %}"> Dashboard</a>
+                    </div>
+                </div>
+            {% endif %}
+          </div>
+      </div>
+  </div>
+  <div class="bg-light py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 mb-0">
+          <a href="{% url 'pharmafriend:homepage' %}" style="text-decoration: none;">Home</a><span class="mx-2 mb-0">/</span>
+          <a style="text-decoration: none;">Government Vendors</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="site-wrap">
+    <div class="site-section bg-light custom-border-bottom" data-aos="fade">
+      <div class="container" style="margin-top: -3rem;">
+        <div class="row mb-5">
+          <div class="col-md-5">
+            <div class="site-section-heading pt-3 mb-4">
+                <h2 class="text-black">Find Kendra</h2>
+            </div>
+            <div class="form-group"><label for="First Name">Select State :</label>
+                <form method="POST" id="formOne">
+                  {% csrf_token %}
+                  <input type="hidden" name="form_type" value="formOne">
+                  <select class="form-control" name="govdropdownstate">
+                    <option selected="selected" value="">--Select State--</option>
+                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jammu And Kashmir">Jammu And Kashmir</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Ladakh">Ladakh</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Puducherry">Puducherry</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="The Dadra and Nagar Haveli and Daman and Diu">The Dadra and Nagar Haveli and Daman and Diu</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                  </select>
+                  <input style="margin-top: 0.5rem;" class="btn btn-primary" type="submit">
+                </form>
+            </div>
+            <div class="form-group"><label for="First Name">Select District :</label>
+                <form method="POST" id="formTwo">
+                  {% csrf_token %}
+                  <input type="hidden" name="form_type" value="formTwo">
+                  <select class="form-control" name="govdropdowndistrict">
+                    <option selected="selected" value="">--Select District--</option>
+                    {% for district in districts %}
+                    <option class="form-control" value="{{district}}">{{district}}</option>
+                    {% endfor %}
+                  </select>
+                  <input id="button2" style="margin-top: 0.5rem;" class="btn btn-primary" type="submit" onclick="showtable();">
+                </form>
+            </div>
+          </div>
+          <div class="col-lg-7 mb-5 mb-lg-0" style="justify-content: center;">
+            {% load static %}<a href="#" class="banner-1 h-100 d-flex" style="background-image: url({% static 'application/images/bjap.jpg' %});background-size: 100% 100%;border-radius:15px;">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <table class="table custom-table" id="kentable">
+          <!-- Kendra List -->
+          <thead>
+            <th>Kendra No.</th>
+            <th>Kendra Code</th>
+            <th>Kendra District</th>
+            <th>Kendra Address</th>
+            <th>Kendra Person</th>
+            <th>Kendra Status</th>
+          </thead>
+          <tbody>
+            {% for kendras in govmeds %}
+            <tr>
+              <td>{{kendras.kendra_no}}</td>
+              <td name="pharma-1mg">{{kendras.kendra_code}}</td>
+              <td>{{kendras.kendra_district}}</td>
+              <td><p>{{kendras.kendra_address}}</p></td>
+              <td>{{kendras.kendra_person}}</td>
+              <td>{{kendras.kendra_status}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+      </table>
+      </div>
+      <div class="container">
+        <div class="site-section-heading pt-3 mb-4" id="medcount">
+          <h2 class="text-black">Medicines Available | Count: <b style="color: red;font-size: larger;">{{total}}</b></h2>
+        </div>
+        <div>
+          <table id="medtable" class="table custom-table">
+            <!-- Kendra List -->
+            <thead>
+              <th>Sr No.</th>
+              <th>Medicine</th>
+              <th>Price</th>
+            </thead>
+            <tbody>
+              {% for products in govproducts %}
+              <tr>
+                <td>{{products.SrNo}}</td>
+                <td>{{products.MedName}}</td>
+                <td>{{products.MedPrice}}</td>
+                <td>{{products.Category}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container">
+      <div class="row">
+          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+          <div class="block-7">
+              <h3 class="footer-heading mb-4">About Us</h3>
+              <p>We are with a mission of providing medicines to the customer at an affordable rate by price comparison and increasing awareness on Medicine prices and relevant information</p>
+          </div>  
+          </div>
+          <div class="col-lg-3 mx-auto mb-5 mb-lg-0">
+          <h3 class="footer-heading mb-4">Quick Links</h3>
+          <ul class="list-unstyled">
+          <li><a href="{% url 'pharmafriend:homepage' %}">Home</a></li>
+          <li><a href="{% url 'pharmafriend:searchpage' %}">Search Medicines</a></li>
+          <li><a href="{% url 'pharmafriend:govmeds' %}">Government Vendors</a></li>
+          <li><a href="{% url 'pharmafriend:locatepage' %}">Locate Pharmacy</a></li>
+          <li><a href="{% url 'pharmafriend:pharmacy' %}">Pharmacy Zone</a></li>
+          <!-- <li><a href="{% url 'pharmafriend:aboutpage' %}">About</a></li>
+          <li><a href="{% url 'pharmafriend:contactpage' %}">Contact</a></li> -->
+          </ul>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+          <div class="block-5 mb-5">
+              <h3 class="footer-heading mb-4">Contact Info</h3>
+              <ul class="list-unstyled">
+              <li class="address">KJSIT Sion, Mumbai, Maharashtra, India</li>
+              <li class="phone"><a>+91 77385 74300</a></li>
+              <li class="email"><a href="#" onclick="sendEmail('gammabytessup@gmail.com', 'Communication with GammaBytes', 'BODY');">gammabytessup@gmail.com</a></li>
+              </ul>
+          </div>
+          </div>
+      </div>
+      
+      </div>
+      <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">
+          <p>
+              Copyright &copy;
+              <script>document.write(new Date().getFullYear());</script> All rights reserved | Website made by Gammabyte Pvt Ltd.
+          
+          </p>
+          </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function sendEmail(to, subject, body) 
+    {
+        window.open('https://mail.google.com/mail/u/0/?view=cm&fs=1&to=' + to + '&su=' + subject + '&body=' + body);
+    }
+
+    function showtable()
+    {
+      document.getElementById("kentable")[0].style.display = "table";
+      document.getElementById("medtable")[0].style.display = "table";
+    }
+  </script>
+
+  {% load static %}<script src="{% static 'application\JS\jquery-3.3.1.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\jquery-ui.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\popper.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\bootstrap.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\owl.carousel.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\jquery.magnific-popup.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\aos.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\main.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\script.js' %}"></script>
+</body>
+
+</html>

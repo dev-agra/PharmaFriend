@@ -1,0 +1,138 @@
+{% extends 'application/base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <div class="site-wrap">
+    <div class="page">
+      <div id="preloader" class="blobs-wrapper">
+          <div class="grp-bgcolor-skincolor loader-blob"></div>
+      </div>
+      <div class="bg-light py-3">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5 mb-0">
+              <a href="{% url 'pharmafriend:homepage' %}" style="text-decoration: none;">Home</a><span class="mx-2 mb-0">/</span>
+              <a style="text-decoration: none;">About Us</a>
+            </div>
+          </div>
+        </div>
+      </div>    
+      <div class="site-section bg-light custom-border-bottom" data-aos="fade">
+        <div class="container" style="margin-top: -3rem;">
+          <div class="row mb-5">
+            <div class="col-md-6">
+              <div class="block-16">
+                <figure>
+                  {% load static %} <img src="{% static 'application/images/bg_1.jpg  ' %}" alt="Image placeholder" class="img-fluid rounded">
+                
+                </figure>
+              </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+            
+            
+              <div class="site-section-heading pt-3 mb-4">
+                <h2 class="text-black">Our Vision</h2>
+              </div>
+              <p>With a mission of providing medicines to the customer at an affordable rate, we at pharmafriend  provide inquisitive price comparison of medicines requested by the customer either by means of a private e-medicine provider or by local medical shops and government medical Kendra's shops.</p>
+              <p>Other than this, pharmafriend would also provide alternative low-cost medication so that the user can choose them if viable and approved by the prescription Doctor, the same for which an email will be sent to the Doctor so that he/she can approve the alternative medicine. </p>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="site-section bg-light custom-border-bottom" data-aos="fade">
+        <div class="container">
+          <div class="row mb-5">
+
+            <div class="col-md-15 mr-auto">
+            
+            
+              <div class="site-section-heading pt-3 mb-4">
+                <h2 class="text-black">How We Started</h2>
+              </div>
+              <p class="text-black"> The idea of starting pharmafriend dates back when one of the pharmafriend’s cofounder I.e Devansh Agrahari was buying medicines from a private online medicine provider, while buying medicine he figured out that there were at least two issues anyone would face while buying from an online seller </p> <p>
+                I.e., first is pricing of the given medicine, it is different at different online medicine providing platforms, the other issue was of not providing an alternative medicine to given searched medicine when the given medicine is not available. so the next day Devansh discussed these issues  with his other colleagues i.e., Akash and Karunesh, and after a much long discussion, the team came with a one stop solution to all these problems I.e., developing an application which would provide price comparison either by  means of a private e-medicine provider or by local medical shops and government medical Kendra's shops and also providing a alternative low-cost medication so that the user can choose them if viable and approved by the prescription Doctor, the same for which an email will be sent to the Doctor so that he/she can approve the alternative medicine and this is how it all started! 
+
+                 </p>
+               
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="site-section bg-light custom-border-bottom" data-aos="fade">
+        <div class="container">
+          <div class="row justify-content-center mb-5">
+            <div class="col-md-7 site-section-heading text-center pt-4">
+              <h2>The Team</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-lg-4 mb-5">
+              <div class="block-38 text-center">
+                <div class="block-38-img">
+                  <div class="block-38-header">
+                    {% load static %}<img src="{% static 'application/images/person_1.jpg' %}" alt="Image placeholder" class="mb-4">
+                    <h3 class="block-38-heading h4">Akash Bhanushali </h3>
+                    <p class="block-38-subheading">CEO/Co-Founder</p>
+                  </div>
+                  <div class="block-38-body">
+                    <p>Leads daily operations at pharmafriend, including front-end development.  </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-5">
+              <div class="block-38 text-center">
+                <div class="block-38-img">
+                  <div class="block-38-header">
+                    {% load static %}<img src="{% static 'application/images/person_2.jpg' %}" alt="Image placeholder" class="mb-4">
+                    <h3 class="block-38-heading h4">Devansh Agrahari</h3>
+                    <p class="block-38-subheading">CTO/Co-Founder</p>
+                  </div>
+                  <div class="block-38-body">
+                    <p>Leads overall backend operations of pharmafriend and handles pharmafriend’s underlying technology. His focus is on making pharmafriend more dynamic, more optimized with a passion for backend architecture and infrastructure.  </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-5">
+              <div class="block-38 text-center">
+                <div class="block-38-img">
+                  <div class="block-38-header">
+                    {% load static %}<img src="{% static 'application/images/person_3.jpg' %}" alt="Image placeholder" class="mb-4">
+                    <h3 class="block-38-heading h4">Karunesh Biradar</h3>
+                    <p class="block-38-subheading">CPO/Co-Founder</p>
+                  </div>
+                  <div class="block-38-body">
+                    <p>Leads overall frontend operations of pharmafriend. A strategic thinker with a passion of building great user friendly products and creating elegant solutions to complex problems.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex;justify-content: center;align-items: center;">
+          <p>
+            <!-- <a href="shop.html" class="btn btn-primary px-5 py-3">Shop Now</a> -->
+            <a href="{% url 'pharmafriend:contactpage' %}" class="btn btn-primary px-5 py-3">Contact Us</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% load static %}<script src="{% static 'application\JS\jquery-3.3.1.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\jquery-ui.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\popper.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\bootstrap.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\owl.carousel.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\jquery.magnific-popup.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\aos.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\main.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\script.js' %}"></script>
+</body>
+</html>
+{% endblock content %}

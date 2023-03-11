@@ -1,0 +1,67 @@
+{% extends 'pharmastore/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content" style="color: black;">
+<!-- ============================ COMPONENT REGISTER   ================================= -->
+	
+	<div class="card mx-auto" style="max-width:520px;margin-top: 40px;">
+		{% include 'accounts/alert.html' %}
+		<article class="card-body">
+		<header class="mb-4"><h4 class="card-title">Sign up</h4></header>
+		<form action="{% url 'accounts:registeruser' %}" method="POST">
+			{% csrf_token %}
+			<div class="form-row">
+				<div class="col form-group">
+					<label>First name</label>
+				  	{{form.first_name}}
+				</div> <!-- form-group end.// -->
+				<div class="col form-group">
+					<label>Last name</label>
+				  	{{form.last_name}}
+				</div> <!-- form-group end.// -->
+			</div> <!-- form-row end.// -->
+			<div class="form-group">
+				<label>Email</label>
+				{{form.email}}
+				<small class="form-text text-muted">We'll never share your email with anyone else.</small>
+				<p style="color: red;">{{form.email.error}}</p>
+			</div> <!-- form-group end.// -->
+			<div class="form-row">
+				<div class="form-group col-md-6">
+				  <label>City</label>
+				  {{form.city_location}}
+				</div> <!-- form-group end.// -->
+				<div class="form-group col-md-6">
+					<label>Phone No:</label>
+					{{form.phone_no}}
+				  </div> <!-- form-group end.// -->
+			</div> <!-- form-row.// -->
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label>Create password</label>
+				    {{form.password}}
+				</div> <!-- form-group end.// --> 
+				<div class="form-group col-md-6">
+					<label>Repeat password</label>
+				    {{form.confirm_password}}
+				</div> <!-- form-group end.// -->  
+			</div>
+			<p style="color: red;">{{form.non_field_errors}}</p>
+			<div class="form-group">
+			    <button type="submit" class="btn btn-primary btn-block"> Register  </button>
+			</div> <!-- form-group// -->      
+			        
+			</form>
+		</article><!-- card-body.// -->
+    </div> <!-- card .// -->
+    <p class="text-center mt-4">Have an account? <a href="{% url 'accounts:loginuser' %}">Log In</a></p>
+    <br><br>
+<!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+
+
+</section>
+{% endblock content %}
+</body>
+</html>

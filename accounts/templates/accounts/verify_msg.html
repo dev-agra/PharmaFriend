@@ -1,0 +1,12 @@
+{% extends 'pharmastore/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="container mx-auto alert alert-info text-center" role="alert" style="max-width: 1024px;margin-top: 100px;">
+        Thank You for registering with PharmaStore, We have sent a verification email to your registered email address <b>{{email}}</b> 
+        <br><br>
+        Already Verified? <a href="{% url 'accounts:loginuser' %}">Login</a> 
+    </div>
+{% endblock content %}
+    

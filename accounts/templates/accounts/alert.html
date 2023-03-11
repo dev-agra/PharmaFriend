@@ -1,0 +1,17 @@
+{% if messages %}
+    {% for message in messages %}
+        <div id="message" class="container text-center" style="padding-top: 20px;width: 100%;">
+            <div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert" style="width: 100%;display: table;margin: 0 auto;">
+                <!-- <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button> -->
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error: {% endif %}
+                    {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<script>
+    setTimeout(function(){
+        document.getElementById('message').fadeOut('slow');
+    }, 4000)
+</script>

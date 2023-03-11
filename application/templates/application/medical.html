@@ -1,0 +1,79 @@
+{% extends 'application/base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <div class="site-wrap">
+    <div id="preloader" class="blobs-wrapper">
+        <div class="grp-bgcolor-skincolor loader-blob"></div>
+    </div>
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 mb-0">
+            <a href="{% url 'pharmafriend:homepage' %}" style="text-decoration: none;">Home</a><span class="mx-2 mb-0">/</span>
+            <a style="text-decoration: none;">Locate Pharmacy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="site-section bg-light custom-border-bottom" data-aos="fade">
+      <div class="container" style="margin-top: -3rem;">
+        <div class="row mb-5">
+          <div class="col-md-5">
+            <form class="contact-form" method="POST">
+              {% csrf_token %}
+              <label for="medicine-name" style="font-size: 2rem;color: black;">Search for Pharmacy: <span style="color: red">*</span></label>
+              <input class="form-control" name="medicine-name" type="text" id="medicine-name" placeholder="Enter Medicine Name:">
+              <button style="margin-top: 1rem;" class="btn btn-primary" type="submit">Search</button><br>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="text-align: center;" class="text-black">Pharmacies with Medicine Searched</h3>
+        <div style="display: flex;align-items: center;justify-content: center;">
+          <table class="table custom-table" style="width: 100%;text-align: center;">
+              <!-- ALternative Medicines List -->
+              <thead>
+                <th><strong>Sr No.</strong></th>
+                <th><strong>Pharmacy Address</strong></th>
+                <th><strong>Pharmacy Owner</strong></th>
+                <th><strong>Pharmacy Contact</strong></th>
+                <th><strong>Pharmacy Name</strong></th>
+                <th><strong>Medicine Power</strong></th>
+                <th><strong>Medicine Quantity</strong></th>
+              </thead>
+              <tbody>
+                {% for pharmas in pharmalist %}
+                <tr>
+                  <td>{{pharmas.No}}</td>
+                  <td>{{pharmas.MedAdd}}</td>
+                  <td>{{pharmas.Medown}}</td>
+                  <td>{{pharmas.Medcontact}}</td>
+                  <td>{{pharmas.MedName}}</td>
+                  <td>{{pharmas.MedAbr}}</td>
+                  <td>{{pharmas.MedQuan}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% load static %}<script src="{% static 'application\JS\jquery-3.3.1.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\jquery-ui.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\popper.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\bootstrap.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\owl.carousel.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\jquery.magnific-popup.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\aos.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\main.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\script.js' %}"></script>
+</body>
+</html>
+ 
+{% endblock content %}
+  

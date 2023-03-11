@@ -1,0 +1,12 @@
+{% autoescape off %}
+
+Dear {{request_user.first_name}} {{request_user.last_name}},
+
+Your Request for Consulting Services has been accepted by Dr. {{admin_user.first_name}} {{admin_user.last_name}},
+
+The name of the consulting room is: {{room_name}}
+
+Kindly click on the the link below to join the room
+{{site_url}}
+
+{% endautoescape %}

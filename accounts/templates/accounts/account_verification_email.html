@@ -1,0 +1,10 @@
+{% autoescape off %}
+
+Hii, {{user_first_name}}
+
+Please click on below link to confirm your registration on PharmaStore
+http://{{domain}}{% url 'accounts:activateuser' uidb64=uid token=token %}
+
+If you think it's not you, please ignore this email
+
+{% endautoescape %}

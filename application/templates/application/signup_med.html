@@ -1,0 +1,134 @@
+{% extends 'application/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="site-wrap">
+    <div class="page"> 
+      <div id="preloader" class="blobs-wrapper">
+        <div class="grp-bgcolor-skincolor loader-blob"></div>
+      </div>  
+      <div class="bg-light py-3">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-5 mb-0">
+                <a href="{% url 'pharmafriend:homepage' %}" style="text-decoration: none;">Home</a><span class="mx-2 mb-0">/</span>
+                <a style="text-decoration: none;">Pharmacy</a><span class="mx-2 mb-0">/</span>
+                <a style="text-decoration: none;">Sign Up</a>
+              </div> 
+            </div>
+          </div>
+      </div>
+      <div class="site-section bg-light custom-border-bottom" data-aos="fade">
+        <div class="container">
+          <div class="row mb-5">
+
+            <div class="col-md-12">
+              <h2 class="h3 mb-5 text-black">Registration for Pharmacy</h2>
+            </div>
+            <div class="col-md-12">
+            
+              <form class="contact-form" action="#" method="POST">
+                {% csrf_token %}
+                {% load static %}
+                <div class="p-3 p-lg-5 border">
+                  <div class="form-group row">
+                    <div class="col-md-12">
+                      <label for="ID" class="text-black">ID: <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="Enter Registration ID " id="ID" name="ID" required>
+                    </div>
+
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-12">
+                      <label for="License" class="text-black">License No: <span class="text-danger"></span></label>
+                      <input type="text" class="form-control" id="License" name="License" placeholder="Enter license no. of pharmacy" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-12">
+                      <label for="Name" class="text-black">Pharmacy Name :<span class="text-danger"></span></label>
+                      <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter name of Pharmacy/Medical" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-md-12">
+                      <label for="Username" class="text-black">Username : </label>
+                      <input type="text" placeholder='Enter your username' class="form-control" id="Username" name="Username" required>
+                    </div>
+                  </div>
+                
+                  <div class="form-group row">
+                    <div class="col-md-12">
+                      <label for="Address" class="text-black">Address : </label>
+                      <textarea name="Address" id="Address" cols="30" rows="7" class="form-control" placeholder="Enter Address of Medical Shop"></textarea required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <div class="col-md-12">
+                        <label for="Owner" class="text-black">Owner Name: </label>
+                        <input type="text" placeholder='Enter name of Pharmacy Owner' class="form-control" id="Owner" name="Owner" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-md-12">
+                        <label for="Contact" class="text-black">Contact No : </label>
+                        <input type="text" placeholder='Enter Mobile/Telephone No.' class="form-control" id="Contact" name="Contact" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-md-12">
+                        <label for="Password" class="text-black">Password : </label>
+                        <input type="password" placeholder='Enter Password' class="form-control" id="Password" name="Password" required>
+                      </div>
+                    </div>
+                  
+
+                  <div class="form-group row">
+                    <div class="col-lg-12">
+                      <input type="Submit" class="btn btn-primary btn-lg btn-block" value="Signup">
+
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </form>
+              <div class="form-group row">
+                <div class="col-lg-12 text-center">
+                  <label for="" class="text-black">Already have an Account </label>
+                  <a href="{% url 'pharmafriend:loginmed' %}"> Login </a>                
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="col-md-5">
+            
+              <div class="site-section-heading pt-3 mb-4">
+
+              </div>      
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% load static %}<script src="{% static 'application\JS\jquery-3.3.1.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\jquery-ui.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\popper.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\bootstrap.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\owl.carousel.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\jquery.magnific-popup.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\aos.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\main.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\script.js' %}"></script>
+</body>
+</html>
+{% endblock content %}

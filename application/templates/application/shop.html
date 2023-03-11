@@ -1,0 +1,92 @@
+{% extends 'application//base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <div class="site-wrap">   
+    <div class="page">
+      <div id="preloader" class="blobs-wrapper">
+        <div class="grp-bgcolor-skincolor loader-blob"></div>
+      </div>
+      <div class="bg-light py-3">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5 mb-0">
+              <a href="{% url 'pharmafriend:homepage' %}" style="text-decoration: none;">Home</a><span class="mx-2 mb-0">/</span>
+              <a style="text-decoration: none;">Search</a><span class="mx-2 mb-0">/</span>
+              <a style="text-decoration: none;">Medicines</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-section" style="margin-top: -55px;">
+        <div class="container">
+          <div class="row">
+            {% for medicine in request.session.medicine %}
+                <div class="col-md-3">
+                  <div class="card card-product-grid" style="padding-left: 10px; padding-top: 10px;margin-top: 10px;">
+                    {% load static %}<img style="width: 100px; height:100px;" src="{% static 'application/images/medicine.jpg' %}" class="card-img-top" alt="...">
+                    <figcaption class="info-wrap">
+                      <h5 class="title" style="color: black;">{{medicine.medname}}</h5>
+                      <h3 class="price mt-1" style="color: black;">{{medicine.medmrp}}</h3>
+                    </figcaption>
+                  </div>
+                </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="container" style="margin-top: -40px;">
+        <form method="POST" style="text-align: center;">
+          {% csrf_token %}
+          <select class="form-control" name="meddropdown">
+            <option selected="selected" disabled>Select Medicine:</option>
+            {% for medicine in request.session.medicine %}
+            <option class="form-control" value="{{medicine.medname}}">{{medicine.medname}}</option>
+            {% endfor %}
+          </select>
+          <input style="margin-top: 1rem; margin-bottom:2rem;" value="Submit" class="btn btn-info" type="submit">
+        </form>
+      </div>
+    
+      
+      {% load static %}<div class="site-section bg-secondary bg-image" style="background-image: url({% static 'application/images/bg_2.jpg' %});">
+        <div class="container">
+          <div class="row align-items-stretch">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+              {% load static %}<a href="#" class="banner-1 h-100 d-flex" style="text-decoration: none;background-image: url({% static 'application/images/bg_1.jpg' %});">
+                <div class="banner-1-inner align-self-center">
+                  <h2>Pharma Products</h2>
+                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.
+                  </p>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-6 mb-5 mb-lg-0">
+              {% load static %}<a href="#" class="banner-1 h-100 d-flex" style="text-decoration: none;background-image: url({% static 'application/images/bg_2.jpg' %});">
+                <div class="banner-1-inner ml-auto  align-self-center">
+                  <h2>Rated by Experts</h2>
+                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% load static %}<script src="{% static 'application\JS\jquery-3.3.1.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\jquery-ui.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\popper.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\bootstrap.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\owl.carousel.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\jquery.magnific-popup.min.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\aos.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\main.js' %}"></script>
+  {% load static %}<script src="{% static 'application\JS\script.js' %}"></script>
+</body>
+</html>
+{% endblock content %}

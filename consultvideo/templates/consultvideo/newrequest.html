@@ -1,0 +1,11 @@
+{% extends 'pharmastore/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="container mx-auto alert alert-info text-center" role="alert" style="max-width: 1024px;margin-top: 100px;">
+        Your Request has been registered, our selected representative will contact you through mail in 15-20mins on <b>{{user.email}}</b> 
+        <br><br>
+        Got a Room? <a href="{% url 'Consult:create_room' %}">Join Now</a> 
+    </div>
+{% endblock content %}

@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="max-age=604800" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>PharmaStore</title>
+
+<!-- <link href="{% static 'pharmastore/images/favicon.ico' %}" rel="shortcut icon" type="image/x-icon"> -->
+
+<!-- jQuery -->
+<script src="{% static 'pharmastore/js/jquery-2.0.0.min.js' %}" type="text/javascript"></script>
+
+<!-- Bootstrap4 files-->
+<script src="{% static 'pharmastore/js/bootstrap.bundle.min.js' %}" type="text/javascript"></script>
+<link href="{% static 'pharmastore/css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
+
+<!-- Font awesome 5 -->
+<link href="{% static 'pharmastore/fonts/fontawesome/css/all.min.css' %}" type="text/css" rel="stylesheet">
+
+<!-- custom style -->
+<link href="{% static 'pharmastore/css/ui.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'pharmastore/css/responsive.css' %}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
+<!-- custom javascript -->
+<script src="{% static 'pharmastore/js/script.js' %}" type="text/javascript"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'application/CSS/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'application/CSS/magnific-popup.css' %}">
+<link rel="stylesheet" href="{% static 'application/CSS/jquery-ui.css' %}">
+<link rel="stylesheet" href="{% static 'application/CSS/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'application/CSS/owl.theme.default.min.css' %}">
+<link rel="stylesheet" href="{% static 'application/CSS/aos.css' %}">
+<link rel="stylesheet" href="{% static 'application/CSS/style.css' %}">  
+
+<script type="text/javascript">
+/// some script
+
+// jquery ready start
+$(document).ready(function() {
+	// jQuery code
+
+}); 
+// jquery end
+</script>
+</head>
+<body>
+    
+    <header class="section-header">
+        <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
+            <div class="site-navbar py-2">
+                <div class="container">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="logo">
+                    <div class="site-logo">
+                        <a href="{% url 'pharmafriend:homepage' %}" class="js-logo-clone">Pharma Friend</a>
+                    </div>
+                    </div>
+                    <div class="main-nav d-none d-lg-block">
+                    <nav class="site-navigation text-right text-md-center" role="navigation">
+                        <ul class="site-menu js-clone-nav d-none d-lg-block">
+                        <li class="active"><a href="{% url 'pharmafriend:homepage' %}">Home</a></li>
+                        <li><a href="{% url 'pharmastore:homepage' %}">Store</a></li>
+                        <li><a href="{% url 'pharmafriend:searchpage' %}">Search Medicines</a></li>
+                        <li><a href="{% url 'pharmafriend:govmeds' %}">Government Vendors</a></li>
+                        <li><a href="{% url 'pharmafriend:locatepage' %}">Locate Pharmacy</a></li>
+                        <li><a href="{% url 'pharmafriend:aboutpage' %}">About</a></li>
+                        <li><a href="{% url 'pharmafriend:contactpage' %}">Contact</a></li>
+                        </ul>
+                    </nav>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        <section class="header-main border-bottom">
+            <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg col-sm col-md col-6 flex-grow-0">
+                <div class="category-wrap dropdown d-inline-block float-right">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 
+                         All category 
+                    </button>
+                    <div class="dropdown-menu">
+                        {% for category in links %}
+                            <a class="dropdown-item" href="{{category.get_url}}">{{category.category_name}}</a>
+                        {% endfor %}
+                    </div>
+                </div>  <!-- category-wrap.// -->
+            </div> <!-- col.// -->
+            <a href="{% url 'pharmastore:storepage' %}" class="btn btn-outline-primary">Store</a>
+            <div class="col-lg  col-md-6 col-sm-12 col">
+                <form action="#" class="search">
+                    <div class="input-group w-100">
+                        <input type="text" class="form-control" style="width:60%;" placeholder="Search">
+                        
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-search"></i>
+                          </button>
+                        </div>
+                    </div>
+                </form> <!-- search-wrap .end// -->
+            </div> <!-- col.// -->
+            <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
+                        <div class="d-flex justify-content-end mb-3 mb-lg-0">
+                            <div class="widget-header">
+                                <small class="title text-muted">Welcome guest!</small>
+                                <div> 
+                                    <a href="./signin.html">Sign in</a> <span class="dark-transp"> | </span>
+                                    <a href="./register.html"> Register</a>
+                                </div>
+                            </div>
+                            <a href="{% url 'carts:cartpage' %}" class="widget-header pl-3 ml-3">
+                                <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
+                                <span class="badge badge-pill badge-danger notify">0</span>
+                            </a>
+                        </div> <!-- widgets-wrap.// -->
+                    </div> <!-- col.// -->
+        </div> <!-- row.// -->
+            </div> <!-- container.// -->
+        </section> <!-- header-main .// -->
+        
+        
+        
+        
+    </header> <!-- section-header.// -->
+    {% block content %}
+        <!-- Content -->
+    {% endblock content %}
+    
+    <!-- ========================= FOOTER ========================= -->
+    <footer class="site-footer">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+            <div class="block-7">
+                <h3 class="footer-heading mb-4">About Us</h3>
+                <p>We are with a mission of providing medicines to the customer at an affordable rate by price comparison and increasing awareness on Medicine prices and relevant information</p>
+            </div>  
+            </div>
+            <div class="col-lg-3 mx-auto mb-5 mb-lg-0">
+            <h3 class="footer-heading mb-4">Quick Links</h3>
+            <ul class="list-unstyled">
+            <li><a href="{% url 'pharmafriend:homepage' %}">Home</a></li>
+            <li><a href="{% url 'pharmafriend:searchpage' %}">Search Medicines</a></li>
+            <li><a href="{% url 'pharmafriend:govmeds' %}">Government Vendors</a></li>
+            <li><a href="{% url 'pharmafriend:locatepage' %}">Locate Pharmacy</a></li>
+            <li><a href="{% url 'pharmafriend:pharmacy' %}">Pharmacy Zone</a></li>
+            <li><a href="{% url 'pharmafriend:aboutpage' %}">About</a></li>
+            <li><a href="{% url 'pharmafriend:contactpage' %}">Contact</a></li>
+            </ul>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+            <div class="block-5 mb-5">
+                <h3 class="footer-heading mb-4">Contact Info</h3>
+                <ul class="list-unstyled">
+                <li class="address">KJSIET Sion, Mumbai, Maharashtra, India</li>
+                <li class="phone"><a>+91 77385 74300</a></li>
+                <li class="email"><a href="#" onclick="sendEmail('gammabytessup@gmail.com', 'Communication with GammaBytes', 'BODY');">gammabytessup@gmail.com</a></li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+            <div class="col-md-12">
+            <p>
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | Website made by Gammabyte Pvt Ltd.
+            
+            </p>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        function sendEmail(to, subject, body) {
+            window.open('https://mail.google.com/mail/u/0/?view=cm&fs=1&to=' + to + '&su=' + subject + '&body=' + body);
+        }
+    </script>
+    <!-- ========================= FOOTER END // ========================= -->

@@ -1,0 +1,54 @@
+{% extends 'application/base.html' %}
+{% load static %}
+
+{% block content %}  
+  <div class="page">
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 mb-0">
+            <a href="{% url 'pharmafriend:homepage' %}" style="text-decoration: none;">Home</a><span class="mx-2 mb-0">/</span>
+            <a style="text-decoration: none;">Pharmacy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <div class="container">
+      <div class="row" style="display: flex;justify-content: center">
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+          <div class="banner-wrap bg-primary h-100">
+            <a href="{% url 'pharmafriend:signupmed' %}" class="h-100">
+              <h5>Register</h5>
+              <p>
+                Add inventory and medicine details
+              </p>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0" style="background-color: rgb(31, 7, 214);">
+          <div class="banner-wrap h-100">
+            <a href="{% url 'pharmafriend:locatepage' %}" class="h-100" style="background-color: rgb(31, 7, 214);">
+              <h5>Locate</h5>
+              <p>
+                Check availability of medicines in local pharmacies
+              </p>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+          <div class="banner-wrap h-100">
+            <a href="{% url 'pharmafriend:loginmed' %}" class="h-100">
+              <h5>Login</h5>
+              <p>
+                Already a pharmabud ?
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</body>
+</html>
+{% endblock content %}

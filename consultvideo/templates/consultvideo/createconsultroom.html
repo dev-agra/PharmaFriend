@@ -1,0 +1,80 @@
+<!-- My Lobby -->
+{% extends 'application/base.html' %}
+{% load static %}
+
+{% block content %}  
+<div class="bg-light py-3">
+  {% include 'accounts/alert.html' %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 mb-0">
+        
+          {% if user.is_staff %}
+          <a href="{% url 'accounts:dashboarduser' %}" style="text-decoration: none;">Dashboard</a><span class="mx-2 mb-0">/</span>
+          <a style="text-decoration: none;">Create</a>
+          {% else %}
+          <a href="{% url 'pharmafriend:homepage' %}" style="text-decoration: none;">Home</a><span class="mx-2 mb-0">/</span>
+          <a style="text-decoration: none;">Consult</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+    <div class="card-body">
+      {% if user.is_staff %}
+      <h4 class="card-title mb-4" style="color: black;">Create Consulting Room</h4>
+      {% else %}
+      <h4 class="card-title mb-4" style="color: black;">Join a Consulting Room</h4>
+      {% endif %}
+      
+      <form id="create_token_form">
+        <div class="form-group">
+		    <input type="text" id="room_name" class="form-control" placeholder="Enter Room Name" name="room_name" style="text-transform: uppercase;">
+        </div> <!-- form-group// -->
+        
+        <!-- <div class="form-group">
+		    <input type="text" id="admin_name" class="form-control" placeholder="Enter Your Name" name="admin_name">
+        </div> form-group// -->
+        
+        <div class="form-group">
+          {% if user.is_staff %}
+          <button type="submit" class="btn btn-outline-primary btn-block"> Create  </button>
+          {% else %}
+          <button type="submit" class="btn btn-outline-primary btn-block"> Join  </button>
+          {% endif %}
+        </div> <!-- form-group// -->
+        <div>
+          {% if user.is_staff %}
+          {% else %}
+          <p>Need a new Consultation? <a href="{% url 'Consult:request_new_consult' %}">Request Now</a></p>
+          {% endif %}
+        </div>
+      </form>
+      </div> <!-- card-body.// -->
+  </div> <!-- card .// -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    let form = document.getElementById('create_token_form');
+    let handleSubmit = async (e) => {
+      e.preventDefault()
+      let room_name = e.target.room_name.value.toUpperCase()
+      let response = await fetch(`tokengen/?channel=${room_name}`)
+      let data = await response.json()
+      let UID = data.uid
+      let token = data.token
+
+      sessionStorage.setItem('UID', UID)
+      sessionStorage.setItem('token', token)
+      sessionStorage.setItem('room_name', room_name)
+      var result= sessionStorage.getItem('room_name')
+      console.log(result)
+      var url = `http://127.0.0.1:8000/Consult/sendconsult/?room_name=${result}`;
+      console.log(result, url)
+      fetch(url)
+      await window.open('room/', handleSubmit)
+    }
+    form.addEventListener('submit', handleSubmit);
+  </script>
+{% endblock content %}

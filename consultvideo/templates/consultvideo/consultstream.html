@@ -1,0 +1,29 @@
+{% extends 'application/base.html' %}
+{% load static %}
+
+{% block content %}  
+<main>
+    <section id="room-name-wrapper">
+        <p>Room Name: <span id="room-name"></span></p>
+    </section>
+
+    <!-- Contains a window that contains two people -->
+    <section id="video-streams"></section>
+    
+    <section id="controls-wrapper">
+        <div class="icon-wrapper">
+            <img class="control-icon" id="mic-btn" src="{% static 'consultvideo/images/microphone.svg' %}" alt="mic">
+        </div>
+        <div class="icon-wrapper">
+            <img class="control-icon" id="vid-btn" src="{% static 'consultvideo/images/video.svg' %}" alt="video">
+        </div>
+        <div class="icon-wrapper">
+            <img class="control-icon" id="leave-btn" src="{% static 'consultvideo/images/leave.svg' %}" alt="leave">
+        </div>
+    </section>
+</main>
+<!-- AgoraRTC_N-4.16.1 -->
+<script type="text/javascript" src="{% static 'consultvideo/assets/AgoraRTC_N-4.16.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'consultvideo/js/consult.js' %}"></script>
+{% endblock content %}
+<!-- AGORA APP ID: 8bebfd4fd4f246ada551aade6f2cf716, Certificate: 92a323b259a74e53af2050c23c10a5aa -->

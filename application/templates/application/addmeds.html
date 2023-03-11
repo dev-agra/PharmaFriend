@@ -1,0 +1,85 @@
+{% extends 'application/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="page">
+    <div id="preloader" class="blobs-wrapper">
+        <div class="grp-bgcolor-skincolor loader-blob"></div>
+    </div>
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row" style="display: flex;justify-content: space-between;">
+          <div class="col-md-5 mb-0">
+            <a href="{% url 'pharmafriend:homepage' %}" style="text-decoration: none;">Home</a><span class="mx-2 mb-0">/</span>
+            <a style="text-decoration: none;">Pharmacy</a><span class="mx-2 mb-0">/</span>
+            <a style="text-decoration: none;">Login</a><span class="mx-2 mb-0">/</span>
+            <a style="text-decoration: none;">Add Medicines</a>
+          </div>
+          <button style="float: right;" class="btn btn-danger"><a style="padding: 5px 10px;text-decoration: none;color:white;left: 100px;" href="{% url 'pharmafriend:logoutmeds' %}">Logout</a></button>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12" style="margin-top: 10px;">
+          <div class="card">
+            <div class="card-body">
+              <form action="" method="POST">
+                {% csrf_token %}
+                <div class="md-3">
+                    <label for='shopname'><b>Pharmacy Name :</b></label>
+                    <input class="form-control" type='text' placeholder='Enter name of Pharmacy/Medical' name='shopname' value="{{request.session.logindetails.medshop}}" required><br>
+                </div>
+                <div class="md-3">
+                    <label for='medown'><b>Owner Name:</b></label>
+                    <input class="form-control" type='text' placeholder='Enter name of Pharmacy Owner' name='medown' value="{{request.session.logindetails.medowner}}" required><br>
+                </div>
+                <div class="med-3">
+                    <label for='medcontact'><b>Contact No:</b></label>
+                    <input class="form-control" type='text' placeholder='Enter Mobile/Telephone No.' name='medcontact' value="{{request.session.logindetails.medcontact}}" required><br>
+                </div>
+                <div class="md-3">
+                    <label for='medadd'><b>Address:</b></label>
+                    <textarea class="form-control" style="vertical-align: top;" id="medadd" placeholder="Enter Address of Medical Shop" name="medadd" rows="4" cols="100" required>{{request.session.logindetails.medadd}}</textarea><br>
+                </div>
+                <div class="md-3">
+                    <label for="medname"><b>Medicine Name:</b></label>
+                    <input class="form-control" type="text" placeholder="Enter name of Medicine" name="medname" id="medname" required>
+                </div>
+                
+                <div class="md-3">
+                    <label for="medpow"><b>Medicine Power:</b></label>
+                    <input class="form-control" type="text" placeholder="Enter power of Medicine" name="medpow" id="medpow">
+                </div>
+                <div class="md-3">
+                    <label for="medext"><b>Medicine Abbrevation:</b></label>
+                    <input class="form-control" type="text" placeholder="Enter abbrevation of Medicine" name="medext" id="medext">
+                </div>
+                
+                <div class="md-3">
+                    <label for="medquan"><b>Medicine Quantity:</b></label>
+                    <input class="form-control" type="number" name="medquan" id="medquan">
+                </div>
+                
+                <div class="md-3">
+                    <label for="medexp"><b>Medicine Expiry:</b></label>
+                    <input class="form-control" type="date" name="medexp" id="medexp" required>
+                </div>
+                <div class="container text-center my-2">
+                    <input class="btn btn-info" type="submit" value="Submit">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        const FORM = document.querySelector('form');
+        const CSRFToken = document.cookie.split('; ').find(row => row.startsWith('csrftoken=')).split('=')[1];
+        // If the user logs out then logs in again, this will use the new Cookie CSRF Token and work
+        document.querySelector('[name="csrfmiddlewaretoken"]').value = CSRFToken;
+    </script>
+</body>
+</html>
+{% endblock content %}
