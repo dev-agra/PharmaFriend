@@ -393,8 +393,8 @@ def combined(MEDNAME):
 
     time.sleep(5)
     
-    medicines_span_apollo = driverA.find_element(By.XPATH,
-                                                 "/html/body/div[1]/div/div/div[2]/div[2]/div[2]/div[3]/div/div/div/div")
+    # medicines_span_apollo = driverA.find_element(By.XPATH, "/html/body/div[1]/div/div/div[2]/div[2]/div[2]/div[3]/div/div/div/div")
+    medicines_span_apollo = driverA.find_element(By.CSS_SELECTOR, ".ProductCard_pcContainer__S65ur > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)")
     medicines_name_apollo = medicines_span_apollo.find_elements(By.CLASS_NAME, "ProductCard_productName__f82e9")
     medicines_price_apollo = medicines_span_apollo.find_elements(By.CLASS_NAME, "ProductCard_priceGroup__V3kKR")
 
@@ -474,19 +474,24 @@ def combined(MEDNAME):
     medicines_link_pharm = []
     medicines_name_pharm_list = []
 
-    medicine_span_pharm = driverP.find_element(By.XPATH, "/html/body/div[1]/main/div/div/div/div[1]")
-    medicines_name_pharm = medicine_span_pharm.find_elements(By.CLASS_NAME, "ProductCard_medicineName__8Ydfq")
-    medicines_price_pharm = medicine_span_pharm.find_elements(By.CLASS_NAME, "ProductCard_ourPrice__yDytt")
+    medicine_span_pharm = driverP.find_element(By.XPATH, "/html/body/div/main/div/div/div/div[1]")
+    medicines_name_pharm = medicine_span_pharm.find_elements(By.CLASS_NAME, "ProductCard_nameAndDeleteIconWrapper__3ffbK")
+    # Handle the price functionality as some prices differ
+    medicines_price_pharm = []
 
     for i in range(2, len(medicines_name_pharm) + 2):
-        # .LHS_container__mrQkM > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1)
+        medicine_price = ""
+        try:
+            medicine_price = driverP.find_element(By.CSS_SELECTOR, f".LHS_container__mrQkM > div:nth-child({i}) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > span:nth-child(1)")
+        except:
+            medicine_price = driverP.find_element(By.CSS_SELECTOR, f".LHS_container__mrQkM > div:nth-child({i}) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)")
         med_lnks_pharm = driverP.find_element(By.CSS_SELECTOR,
                                               f".LHS_container__mrQkM > div:nth-child({i}) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1)")
         medicines_link_pharm.append(med_lnks_pharm.get_attribute('href'))
+        medicines_price_pharm.append(medicine_price.text)
 
     for i in range(len(medicines_name_pharm)):
-        medicine = {}
-        medicines_pharmeasy.update({f'{medicines_name_pharm[i].text}': {"Meddis": medicines_price_pharm[i].text[0:-1],
+        medicines_pharmeasy.update({f'{medicines_name_pharm[i].text}': {"Meddis": medicines_price_pharm[i],
                                                                         "Medlink": medicines_link_pharm[i]}})
         medicines_name_pharm_list.append(medicines_name_pharm[i].text)
 

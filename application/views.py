@@ -106,7 +106,7 @@ def AddMeds(request):
 def Locate(request):
     if request.method == 'POST':
         medicine_name1 = str(request.POST['medicine-name'])
-        medicine_name1.lower()
+        medicine_name1 = medicine_name1.lower()
         aquery = MedicineDet.objects.filter(medname__startswith = medicine_name1)
         a = aquery.values_list()
         
