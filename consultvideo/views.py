@@ -12,7 +12,7 @@ from decouple import config
 
 TWILIOAPI_SID = config('TWILIOAPI_SID')
 TWILIOAPI_KEY = config('TWILIOAPI_KEY')
-Phonenumber = config('Phonenumber')
+Phonenumber = config('TWILIO_PHONENO')
 
 client = Client(TWILIOAPI_SID, TWILIOAPI_KEY)
 

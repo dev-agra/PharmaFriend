@@ -1,5 +1,5 @@
-const APP_ID = '8bebfd4fd4f246ada551aade6f2cf716';
-const APP_CERT = '99169edc7f434938b7cfdc716aadf186';
+const APP_ID = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+const APP_CERT = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 // generate this token after every 24hrs
 const APP_TOKEN = sessionStorage.getItem('token');
 const APP_CHANNEL = sessionStorage.getItem('room_name');
