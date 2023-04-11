@@ -40,7 +40,7 @@ When the user searches for medicine info of a particular medicine our dynamic we
 1) Goto python.org and Download-Install Python-3.7 (DO NOT ADD TO PATH!)
 2) Goto directory where you want to create the folder for this project and run this command:
     python -m virtualenv -p "PATH TO PYTHON-3.7 .exe"
-3) Once folder is set copy all the files from .ZIP extracted to the folder created
+3) Once folder is set copy all the files from .ZIP extracted to the folder created on machine
 4) Activate the virtual environemt as 
     Scripts\activate
 5) Once activated just check if all dependencies present by command
