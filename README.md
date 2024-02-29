@@ -1,7 +1,7 @@
 Medicine Price Comparison and Consultation Services 🩺💊💉
 ![alt text](https://github.com/dev-agra/PharmaFriend/blob/main/Screenshots/Screenshot%20(145).png?raw=true)
 
-Welcome to our website, your one-stop destination for all your medical needs! We are committed to providing you with the best prices for medicines by comparing prices from different websites, so you can make an informed decision about your purchase.
+Welcome to PharmaFriend, your one-stop destination for all your medical needs! We are committed to providing you with the best prices for medicines by comparing prices from different websites, so you can make an informed decision about your purchase.
 
 But that's not all - we offer consultation services with licensed doctors and pharmacists to provide you with the right guidance for your medical needs. Our consultation services are available 24/7, so you can get the help you need at any time.
 
